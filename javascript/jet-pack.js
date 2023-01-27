@@ -2,8 +2,8 @@ class JetPack {
   constructor() {
     this.x = 350;
     this.y = 400;
-    this.h = 90;
-    this.w = 90;
+    this.h = 70;
+    this.w = 70;
     this.speed = 2.5;
     this.jumpspeed = 60;
     this.moveSpeed = 25;

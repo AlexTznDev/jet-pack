@@ -3,8 +3,8 @@ class Missile {
     constructor(yPos, xPos , ismisileright) {
       this.x =  xPos
       this.y = yPos;
-      this.w = 200;
-      this.h = 50;
+      this.w = 100;
+      this.h = 25;
       this.speed = 2;
       this.img = new Image();
       if(ismisileright === true){
@@ -12,7 +12,6 @@ class Missile {
       }else{
         this.img.src = "../Images/missiles/missileToRight.png"
       }
-      
       
        ;
 
