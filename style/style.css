@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    background-color: #fdf4d5;
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#my-canvas {
+    background-color: #fdf4d5;
+}
+
+#start-btn,
+#restart-btn {
+
+    width: 200px;
+    padding-top: 100px;
+}
+
+.img-button {
+    width: 100%;
+}
+
+
+.container {
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+#my-canvas {
+    display: none;
+    /* no muestres este elemento en el DOM */
+}
+
+#gameover-screen {
+    display: none;
+}
