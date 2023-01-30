@@ -2,8 +2,8 @@ class Gazolina {
     constructor(posX) {
       this.x = posX;
       this.y = -50;
-      this.h = 45;
-      this.w = 30;
+      this.h = 40;
+      this.w = 40;
     //   this.speed = 2.5;
     //   this.jumpspeed = 60;
     //   this.moveSpeed = 25;

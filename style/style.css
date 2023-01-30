@@ -8,6 +8,9 @@ body {
     align-items: center;
 
 }
+h1{
+    font-size: 3rem;
+}
 
 #my-canvas {
     background-color: #fdf4d5;
@@ -33,6 +36,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 50px;
+
 }
 
 #my-canvas {
@@ -43,3 +47,13 @@ body {
 #gameover-screen {
     display: none;
 }
+
+
+
+.absolute{
+    position: absolute;
+    top :8%;
+    left: 50%;
+    
+}
+

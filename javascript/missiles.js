@@ -3,7 +3,7 @@ class Missile {
     constructor(yPos, xPos , ismisileright) {
       this.x =  xPos
       this.y = yPos;
-      this.w = 100;
+      this.w = 90;
       this.h = 25;
       this.speed = 2;
       this.img = new Image();
@@ -14,14 +14,6 @@ class Missile {
       }
       
        ;
-
-
-
-      // if(isTuboImgUp === true){
-      //     this.img.src = "../Images/missiles/missileGoLeft.png" ;
-      // }else{
-      //     this.img.src = "../images/missiles/missileToRight.png"
-      // }
       
     }
   
@@ -42,6 +34,9 @@ class Missile {
       this.x += 4;
 
     }
+
+
+
   }
 
 
