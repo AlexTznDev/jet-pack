@@ -9,7 +9,7 @@ class Missile {
       this.img = new Image();
       if(ismisileright === true){
         this.img.src = "../Images/missiles/missileGoLeft.png"
-      }else{
+      }else {
         this.img.src = "../Images/missiles/missileToRight.png"
       }
       

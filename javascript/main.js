@@ -11,6 +11,8 @@ const soundBip = document.querySelector("#bip-sound")
 const soundLoose = document.querySelector("#loose-sound")
 const soundexplosion = document.querySelector("#explosion-sound")
 const soundSCoin = document.querySelector("#coin-sound")
+const soundBubble = document.querySelector("#bubble-sound")
+const soundgazolina = document.querySelector("#gazolina-sound")
 
 
 const startGame = () => {

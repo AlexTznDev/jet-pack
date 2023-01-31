@@ -21,12 +21,16 @@ class Game {
     this.numberOfcoins;
     this.protection = false;
     this.bubbleArr = [];
+    this.explosion = new Explosion();
+    this.positionExplosionArr = []
+    
   }
 
   gameOver = () => {
     this.isGameon = false;
     canvas.style.display = "none";
     gameOverScrreenDOM.style.display = "flex";
+    soundLoose.pause();
   };
 
   CheckCounter = () => {
@@ -50,11 +54,14 @@ class Game {
         eachMisile.h + eachMisile.y > this.jetPack.y
       ) {
         // Collision detected!
+        
+        this.positionExplosionArr.push(eachMisile.y - 50)
+        this.positionExplosionArr.push(eachMisile.x - 50)
+        this.missileArr.splice(eachMisile.target, 1);
         this.jetPack.missileTouch();
         this.isGameOn = false;
         soundexplosion.play();
         soundLoose.play();
-
         setTimeout(() => {
           this.gameOver();
         }, 2300);
@@ -70,6 +77,10 @@ class Game {
         eachMisile.h + eachMisile.y > this.jetPack.y
       ) {
         // Collision detected!
+
+        this.positionExplosionArr.push(eachMisile.y - 50)
+        this.positionExplosionArr.push(eachMisile.x - 50)
+        this.missileArrLeft.splice(eachMisile.target, 1);
         this.jetPack.missileTouch();
         this.isGameOn = false;
         soundexplosion.play();
@@ -159,6 +170,7 @@ class Game {
         // Collision detected!
         this.gazolinaArr.splice(eachGazolina.target, 1);
         this.count = 10;
+        soundgazolina.play()
       }
     });
   };
@@ -188,9 +200,7 @@ class Game {
       ) {
         this.diamantArr.splice(eachDiamant.target, 1);
         this.countCoins += 20;   
-        for(let i=0;i< 5;i++){
-          soundSCoin.play();
-        }  
+        soundSCoin.play();
       }
     });
 
@@ -215,10 +225,11 @@ class Game {
       ) {
         this.bubbleArr.splice(eachBubble.target, 1);
         this.protection = true;
+        soundBubble.play()
         setTimeout(() => {
           this.protection = false;
         }, 8000);
-        console.log(this.protection);
+        
       }
     });
   };
@@ -277,6 +288,7 @@ class Game {
     this.misileApparecenLeft();
     this.misileApparecenRight();
     this.bubbleApparence();
+    
 
     // 3. dibujado de los elementos
     this.drawBg();
@@ -330,6 +342,10 @@ class Game {
     this.diamantArr.forEach((eachdiamant) => {
       eachdiamant.drawDiamant();
     });
+
+    this.explosion.drawExplosion(this.positionExplosionArr[1], this.positionExplosionArr[0])
+
+
 
     if (this.isGameOn === true && this.protection === false) {
       this.jetPack.drawJet();
