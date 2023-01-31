@@ -21,8 +21,9 @@ class Game {
     this.numberOfcoins;
     this.protection = false;
     this.bubbleArr = [];
-    this.explosion = new Explosion();
+    this.explosion = new Explosion(0)
     this.positionExplosionArr = []
+   
     
   }
 
@@ -78,8 +79,8 @@ class Game {
       ) {
         // Collision detected!
 
-        this.positionExplosionArr.push(eachMisile.y - 50)
-        this.positionExplosionArr.push(eachMisile.x - 50)
+        this.positionExplosionArr.push(eachMisile.y )
+        this.positionExplosionArr.push(eachMisile.x + 50)
         this.missileArrLeft.splice(eachMisile.target, 1);
         this.jetPack.missileTouch();
         this.isGameOn = false;
@@ -125,7 +126,7 @@ class Game {
   };
 
   diamantApparence = () => {
-    if (this.diamantArr.length === 0 || this.frame % 600 === 0) {
+    if (this.frame % 600 === 0) {
       let randomPosX = Math.random() * canvas.width - 100;
       if (randomPosX < 50) {
         randomPosX = 50;
@@ -208,7 +209,7 @@ class Game {
   };
 
   bubbleApparence = () => {
-    if (this.bubbleArr.length === 0 || this.frame % 800 === 0) {
+    if (this.frame % 800 === 0) {
       let randomPosXBuble = Math.random() * canvas.width;
       this.bubble = new Bubble(randomPosXBuble);
       this.bubbleArr.push(this.bubble);
