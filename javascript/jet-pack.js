@@ -5,7 +5,7 @@ class JetPack {
     this.h = 70;
     this.w = 50;
     this.speed = 2.5;
-    this.jumpspeed = 60;
+    this.jumpspeed = 100;
     this.moveSpeed = 25;
 
     this.img = new Image();
