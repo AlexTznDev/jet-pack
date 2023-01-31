@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #fdf4d5;
+    background-color: #0b0f2c;
     height: 100vh;
     display: flex;
     align-content: center;
@@ -13,7 +13,7 @@ h1{
 }
 
 #my-canvas {
-    background-color: #fdf4d5;
+    background-color: #0b0f2c;
 }
 
 #start-btn,

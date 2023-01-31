@@ -3,10 +3,10 @@ class Game {
 
   constructor() {
     this.bg = new Image();
-    this.bg.src = "../Images/bg.jpg";
+    this.bg.src = "../Images/bg.png";
     this.jetPack = new JetPack();
     this.jauge = new Jauge();
-    this.counterCoins = new CounterCoins()
+    this.counterCoins = new CounterCoins();
     this.frame = 1; // quantité de frame passé dans le jeux
     this.isGameon = true;
     this.missileArr = [];
@@ -15,13 +15,13 @@ class Game {
     this.count = 10;
     this.isGameOn = true;
     this.missileSeparation = 300;
-    this.diamantArr = []
+    this.diamantArr = [];
     this.pointArr = [];
     this.countCoins = 0;
     this.numberOfcoins;
-    
+    this.protection = false;
+    this.bubbleArr = [];
   }
-
 
   gameOver = () => {
     this.isGameon = false;
@@ -30,32 +30,20 @@ class Game {
   };
 
   CheckCounter = () => {
-    if (this.frame % 120 === 0) {
+    if (this.frame % 120 === 0 && this.protection === false) {
       this.count--;
     }
     if (this.count === 0) {
       this.gameOver();
+      soundLoose.play();
     }
   };
 
   checkColition = () => {
     this.missileArr.forEach((eachMisile) => {
-      if (this.isGameOn && 
-        eachMisile.x < this.jetPack.x + this.jetPack.w &&
-        eachMisile.x + eachMisile.w > this.jetPack.x &&
-        eachMisile.y < this.jetPack.y + this.jetPack.h &&
-        eachMisile.h + eachMisile.y > this.jetPack.y 
-      ) {
-        // Collision detected!
-        this.jetPack.missileTouch();
-        this.isGameOn = false;
-        setTimeout(() => {
-          this.gameOver();
-        }, 2400);
-      }
-    });
-    this.missileArrLeft.forEach((eachMisile) => {
-      if (this.isGameOn && 
+      if (
+        this.isGameOn &&
+        this.protection === false &&
         eachMisile.x < this.jetPack.x + this.jetPack.w &&
         eachMisile.x + eachMisile.w > this.jetPack.x &&
         eachMisile.y < this.jetPack.y + this.jetPack.h &&
@@ -64,15 +52,37 @@ class Game {
         // Collision detected!
         this.jetPack.missileTouch();
         this.isGameOn = false;
+        soundexplosion.play();
+        soundLoose.play();
+
         setTimeout(() => {
           this.gameOver();
-        }, 2400);
+        }, 2300);
+      }
+    });
+    this.missileArrLeft.forEach((eachMisile) => {
+      if (
+        this.isGameOn &&
+        this.protection === false &&
+        eachMisile.x < this.jetPack.x + this.jetPack.w &&
+        eachMisile.x + eachMisile.w > this.jetPack.x &&
+        eachMisile.y < this.jetPack.y + this.jetPack.h &&
+        eachMisile.h + eachMisile.y > this.jetPack.y
+      ) {
+        // Collision detected!
+        this.jetPack.missileTouch();
+        this.isGameOn = false;
+        soundexplosion.play();
+        soundLoose.play();
+        setTimeout(() => {
+          this.gameOver();
+        }, 2300);
       }
     });
   };
 
   colitionBotom = () => {
-    if ((this.jetPack.y > canvas.height)) {
+    if (this.jetPack.y > canvas.height) {
       this.gameOver();
     }
   };
@@ -85,24 +95,34 @@ class Game {
   pointApparence = () => {
     if (this.pointArr.length === 0 || this.frame % 180 === 0) {
       let randomPosX = Math.random() * canvas.width - 100;
-      if(randomPosX < 50){
-        randomPosX = 50
+      if (randomPosX < 50) {
+        randomPosX = 50;
       }
       let coins = new Points(randomPosX);
       this.pointArr.push(coins);
     }
   };
 
-  diamantApparence = () =>{
+  bipSound = () => {
+    if (this.count === 3) {
+      soundBip.play();
+    } else if (this.count === 2) {
+      soundBip.play();
+    } else if (this.count === 1) {
+      soundBip.play();
+    }
+  };
+
+  diamantApparence = () => {
     if (this.diamantArr.length === 0 || this.frame % 600 === 0) {
       let randomPosX = Math.random() * canvas.width - 100;
-      if(randomPosX < 50){
-        randomPosX = 50
+      if (randomPosX < 50) {
+        randomPosX = 50;
       }
       let coins = new Diamant(randomPosX);
       this.diamantArr.push(coins);
     }
-  }
+  };
 
   misileApparecenRight = () => {
     if (this.missileArr.length === 0 || this.frame % 60 === 0) {
@@ -153,7 +173,7 @@ class Game {
       ) {
         this.pointArr.splice(eachCoin.target, 1);
         this.countCoins += 2;
-        console.log(this.countCoins);
+        soundSCoin.play();
       }
     });
   };
@@ -167,11 +187,41 @@ class Game {
         eachDiamant.h + eachDiamant.y > this.jetPack.y
       ) {
         this.diamantArr.splice(eachDiamant.target, 1);
-        this.countCoins += 20;
-        
+        this.countCoins += 20;   
+        for(let i=0;i< 5;i++){
+          soundSCoin.play();
+        }  
       }
     });
-  }
+
+
+  };
+
+  bubbleApparence = () => {
+    if (this.bubbleArr.length === 0 || this.frame % 800 === 0) {
+      let randomPosXBuble = Math.random() * canvas.width;
+      this.bubble = new Bubble(randomPosXBuble);
+      this.bubbleArr.push(this.bubble);
+    }
+  };
+
+  bubbleCollition = () => {
+    this.bubbleArr.forEach((eachBubble) => {
+      if (
+        eachBubble.x < this.jetPack.x + this.jetPack.w &&
+        eachBubble.x + eachBubble.w > this.jetPack.x &&
+        eachBubble.y < this.jetPack.y + this.jetPack.h &&
+        eachBubble.h + eachBubble.y > this.jetPack.y
+      ) {
+        this.bubbleArr.splice(eachBubble.target, 1);
+        this.protection = true;
+        setTimeout(() => {
+          this.protection = false;
+        }, 8000);
+        console.log(this.protection);
+      }
+    });
+  };
 
   gameLoop = () => {
     this.frame++;
@@ -179,13 +229,24 @@ class Game {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // 2. movimientos y acciones de todos los elementos
-    this.jetPack.gravityJet();
+    if (this.isGameOn === true && this.protection === false) {
+      this.jetPack.gravityJet(2.5);
+    } else if (this.isGameOn === false && this.protection === false) {
+      this.jetPack.gravityJet(5.5);
+    } else if (this.protection === true) {
+      this.jetPack.gravityJet(1.7);
+    }
+
     this.checkColition();
     this.gazolinaColition();
     this.CheckCounter();
     this.coinsColition();
     this.colitionBotom();
     this.diamantColition();
+    this.bubbleCollition();
+
+    //sound methode
+    this.bipSound();
 
     this.missileArr.forEach((eachMisile) => {
       eachMisile.moveMissile();
@@ -203,15 +264,19 @@ class Game {
       eachPoint.movePoint();
     });
 
-    this.diamantArr.forEach((eachdiamant)=>{
-      eachdiamant.moveDiamant()
-    })
+    this.diamantArr.forEach((eachdiamant) => {
+      eachdiamant.moveDiamant();
+    });
+    this.bubbleArr.forEach((eachBubble) => {
+      eachBubble.moveBubble();
+    });
 
     this.pointApparence();
-    this.diamantApparence() 
+    this.diamantApparence();
     this.gazolinaApparence();
     this.misileApparecenLeft();
     this.misileApparecenRight();
+    this.bubbleApparence();
 
     // 3. dibujado de los elementos
     this.drawBg();
@@ -240,13 +305,11 @@ class Game {
       this.jauge.drawJauge11();
     }
 
-    this.counterCoins.drawCounter()
+    this.counterCoins.drawCounter();
 
-    this.numberOfcoins = new NumberOfcoins(this.countCoins)
-    this.numberOfcoins.drawNumber()
+    this.numberOfcoins = new NumberOfcoins(this.countCoins);
+    this.numberOfcoins.drawNumber();
 
-
-  
     this.missileArr.forEach((eachMisile) => {
       eachMisile.drawMissile();
     });
@@ -260,14 +323,20 @@ class Game {
       eachPoint.drawPoint();
     });
 
-    this.diamantArr.forEach((eachdiamant)=>{
-      eachdiamant.drawDiamant()
-    })
+    this.bubbleArr.forEach((eachBubble) => {
+      eachBubble.drawBubble();
+    });
 
-    if (this.isGameOn === true) {
+    this.diamantArr.forEach((eachdiamant) => {
+      eachdiamant.drawDiamant();
+    });
+
+    if (this.isGameOn === true && this.protection === false) {
       this.jetPack.drawJet();
-    } else {
+    } else if (this.isGameOn === false && this.protection === false) {
       this.jetPack.drawDiedJet();
+    } else if (this.protection === true) {
+      this.jetPack.drawBubbleJet();
     }
 
     if (this.isGameon === true) {

@@ -5,7 +5,12 @@ const ctx = canvas.getContext("2d");
 const restartBtn = document.querySelector("#restart-btn");
 let game;
 const gameOverScrreenDOM = document.querySelector("#gameover-screen");
-// const sound = document.querySelector("#jet-pack-sound")
+const bodyDOM = document.querySelector("body")
+const sound = document.querySelector("#jet-pack-sound")
+const soundBip = document.querySelector("#bip-sound")
+const soundLoose = document.querySelector("#loose-sound")
+const soundexplosion = document.querySelector("#explosion-sound")
+const soundSCoin = document.querySelector("#coin-sound")
 
 
 const startGame = () => {
@@ -13,6 +18,7 @@ const startGame = () => {
   startScreenDOM.style.display = "none";
   gameOverScrreenDOM.style.display ="none"
   canvas.style.display = "block";
+  bodyDOM.style.backgroundColor = "#0b0f2c"
 
 
  
@@ -24,7 +30,15 @@ const startGame = () => {
 };
 
 startBtnDOM.addEventListener("click", startGame);
+startBtnDOM.addEventListener("click", ()=>{
+    sound.play()
+});
+
 restartBtn.addEventListener("click", startGame);
+restartBtn.addEventListener("click", ()=>{
+    sound.play()
+});
+
 window.addEventListener("keydown", (event) => {
     
     if(event.code === "Space"){
@@ -34,7 +48,5 @@ window.addEventListener("keydown", (event) => {
     }else if(event.code === "ArrowLeft"){
         game.jetPack.movejetLeft()
     }
-    // else  if(event.code === "ArrowDown"){
-    //     game.jetPack.moveJetDown()
-    // }
+
 })
