@@ -306,7 +306,7 @@ class Game {
         soundBubble.play();
         setTimeout(() => {
           this.protection = false;
-        }, 8000);
+        }, 6000);
       }
     });
   };

@@ -12,8 +12,8 @@ class JetPack {
     this.img.src = "./Images/jet-pack-play-again.png";
     this.imgDied = new Image();
     this.imgDied.src = "./Images/jet-pack-died.png";
-    this.imgBublle =new Image()
-    this.imgBublle.src = "./Images/jet-pack-bubble.png"
+    this.imgBublle = new Image();
+    this.imgBublle.src = "./Images/jet-pack-bubble.png";
   }
 
   drawJet = () => {
@@ -27,9 +27,7 @@ class JetPack {
   };
 
   gravityJet = (arg) => {
-    
-        this.y += arg;
-      
+    this.y += arg;
   };
 
   movejetRight = () => {
@@ -43,12 +41,13 @@ class JetPack {
   // }
 
   jumpJet = () => {
-    this.y -= this.jumpspeed;
+    if (this.y > 0) {
+      this.y -= this.jumpspeed;
+    }
   };
 
   missileTouch = () => {
     this.moveSpeed = 0;
     this.jumpspeed = 0;
-    
   };
 }
