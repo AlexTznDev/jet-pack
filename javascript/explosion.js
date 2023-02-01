@@ -21,4 +21,5 @@ class Explosion {
   drawExplosion = (xPos, yPos) => {
     ctx.drawImage(this.img , xPos, yPos, this.w, this.h);
   };
+  
 }

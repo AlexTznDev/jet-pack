@@ -23,13 +23,21 @@ class Game {
     this.numberOfcoins;
     this.protection = false;
     this.bubbleArr = [];
-    this.explosion = new Explosion(0)
-    this.positionExplosionArr = []
+    this.explosion = new Explosion(0);
+    this.positionExplosionArr = [];
     this.nivel = 1;
-    this.breakNivel = false
+    this.breakNivel = false;
+    this.twoPoint = new More2();
+    this.twoPointPositionARR = [];
+    this.twoPointBoolean = false;
+    this.twentyPoint = new More20();
+    this.twentyPointPositionARR = [];
+    this.twentyPointBoolean = false;
 
-   
-    
+
+
+
+
   }
 
   gameOver = () => {
@@ -40,14 +48,17 @@ class Game {
   };
 
   CheckCounter = () => {
-    if (this.frame % 120 === 0 && this.protection === false && this.breakNivel === false) {
+    if (
+      this.frame % 120 === 0 &&
+      this.protection === false &&
+      this.breakNivel === false
+    ) {
       this.count--;
     }
     if (this.count === 0) {
       this.isGameOn = false;
       soundLoose.play();
       this.jetPack.missileTouch();
-      
     }
   };
 
@@ -63,15 +74,14 @@ class Game {
         eachMisile.h + eachMisile.y > this.jetPack.y
       ) {
         // Collision detected!
-        
-        this.positionExplosionArr.push(eachMisile.y - 50)
-        this.positionExplosionArr.push(eachMisile.x - 50)
+
+        this.positionExplosionArr.push(eachMisile.y - 50);
+        this.positionExplosionArr.push(eachMisile.x - 50);
         this.missileArr.splice(eachMisile.target, 1);
         this.jetPack.missileTouch();
         this.isGameOn = false;
         soundexplosion.play();
         soundLoose.play();
-
       }
     });
     this.missileArrLeft.forEach((eachMisile) => {
@@ -86,14 +96,13 @@ class Game {
       ) {
         // Collision detected!
 
-        this.positionExplosionArr.push(eachMisile.y )
-        this.positionExplosionArr.push(eachMisile.x + 50)
+        this.positionExplosionArr.push(eachMisile.y);
+        this.positionExplosionArr.push(eachMisile.x + 50);
         this.missileArrLeft.splice(eachMisile.target, 1);
         this.jetPack.missileTouch();
         this.isGameOn = false;
         soundexplosion.play();
         soundLoose.play();
-
       }
     });
   };
@@ -110,7 +119,10 @@ class Game {
   };
 
   pointApparence = () => {
-    if (this.pointArr.length === 0 || this.frame % 180 === 0 && this.breakNivel === false) {
+    if (
+      this.pointArr.length === 0 ||
+      (this.frame % 180 === 0 && this.breakNivel === false)
+    ) {
       let randomPosX = Math.random() * canvas.width - 100;
       if (randomPosX < 50) {
         randomPosX = 50;
@@ -121,11 +133,23 @@ class Game {
   };
 
   bipSound = () => {
-    if (this.count === 3 && this.breakNivel === false && this.protection === false) {
+    if (
+      this.count === 3 &&
+      this.breakNivel === false &&
+      this.protection === false
+    ) {
       soundBip.play();
-    } else if (this.count === 2 && this.breakNivel === false && this.protection === false) {
+    } else if (
+      this.count === 2 &&
+      this.breakNivel === false &&
+      this.protection === false
+    ) {
       soundBip.play();
-    } else if (this.count === 1 && this.breakNivel === false && this.protection === false) {
+    } else if (
+      this.count === 1 &&
+      this.breakNivel === false &&
+      this.protection === false
+    ) {
       soundBip.play();
     }
   };
@@ -142,36 +166,46 @@ class Game {
   };
 
   misileApparecenRight = () => {
-
-    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1 && this.breakNivel === false) {
+    if (
+      this.missileArr.length === 0 ||
+      (this.frame % 300 === 0 && this.nivel === 1 && this.breakNivel === false)
+    ) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, canvas.width + 200, true);
       this.missileArr.push(missileRight);
-    } else if(this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2 && this.breakNivel === false){
+    } else if (
+      this.missileArr.length === 0 ||
+      (this.frame % 60 === 0 && this.nivel === 2 && this.breakNivel === false)
+    ) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, canvas.width + 200, true);
       this.missileArr.push(missileRight);
     }
-
-
   };
 
   misileApparecenLeft = () => {
-
-    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1 && this.breakNivel === false) {
+    if (
+      this.missileArr.length === 0 ||
+      (this.frame % 300 === 0 && this.nivel === 1 && this.breakNivel === false)
+    ) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, -200, false);
       this.missileArrLeft.push(missileRight);
-    } else if (this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2 && this.breakNivel === false) {
+    } else if (
+      this.missileArr.length === 0 ||
+      (this.frame % 60 === 0 && this.nivel === 2 && this.breakNivel === false)
+    ) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, -200, false);
-       this.missileArrLeft.push(missileRight);
+      this.missileArrLeft.push(missileRight);
     }
-
   };
 
   gazolinaApparence = () => {
-    if (this.gazolinaArr.length === 0 || this.frame % 400 === 0 && this.breakNivel === false) {
+    if (
+      this.gazolinaArr.length === 0 ||
+      (this.frame % 400 === 0 && this.breakNivel === false)
+    ) {
       let randomPosXgaz = Math.random() * canvas.width;
       this.gazolina = new Gazolina(randomPosXgaz);
       this.gazolinaArr.push(this.gazolina);
@@ -189,7 +223,7 @@ class Game {
         // Collision detected!
         this.gazolinaArr.splice(eachGazolina.target, 1);
         this.count = 10;
-        soundgazolina.play()
+        soundgazolina.play();
       }
     });
   };
@@ -202,18 +236,22 @@ class Game {
         eachCoin.y < this.jetPack.y + this.jetPack.h &&
         eachCoin.h + eachCoin.y > this.jetPack.y
       ) {
+        this.twoPointPositionARR = [eachCoin.x, eachCoin.y];
+        this.twoPointBoolean = false;
+        setTimeout(()=>{
+          this.twoPointBoolean = true;
+        }, 500)
+
         this.pointArr.splice(eachCoin.target, 1);
         this.countCoins += 2;
         soundSCoin.play();
 
-        console.log(this.breakNivel)
-
-        if(this.countCoins > 50 && this.nivel === 1){
+        if (this.countCoins >= 10 && this.nivel === 1) {
           this.nivel = 2;
           this.breakNivel = true;
-          nivelNextDOM.style.display = "flex"
+          nivelNextDOM.style.display = "flex";
+          blackScreenDOM.style.display = "flex";
         }
-
       }
     });
   };
@@ -226,21 +264,25 @@ class Game {
         eachDiamant.y < this.jetPack.y + this.jetPack.h &&
         eachDiamant.h + eachDiamant.y > this.jetPack.y
       ) {
-        this.diamantArr.splice(eachDiamant.target, 1);
-        this.countCoins += 20;   
-        soundSCoin.play();
-        console.log(this.breakNivel)
 
-        if(this.countCoins > 50 && this.nivel === 1){
+        this.twentyPointPositionARR = [eachDiamant.x, eachDiamant.y];
+        this.twentyPointBoolean = false;
+        setTimeout(()=>{
+          this.twentyPointBoolean = true;
+        }, 1000)
+
+        this.diamantArr.splice(eachDiamant.target, 1);
+        this.countCoins += 20;
+        soundSCoin.play();
+
+        if (this.countCoins >= 10 && this.nivel === 1) {
           this.nivel = 2;
           this.breakNivel = true;
-          nivelNextDOM.style.display = "flex"
+          nivelNextDOM.style.display = "flex";
+          blackScreenDOM.style.display = "flex";
         }
-
       }
     });
-
-
   };
 
   bubbleApparence = () => {
@@ -261,16 +303,13 @@ class Game {
       ) {
         this.bubbleArr.splice(eachBubble.target, 1);
         this.protection = true;
-        soundBubble.play()
+        soundBubble.play();
         setTimeout(() => {
           this.protection = false;
         }, 8000);
-        
       }
     });
   };
-
-
 
   gameLoop = () => {
     this.frame++;
@@ -278,21 +317,32 @@ class Game {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // 2. movimientos y acciones de todos los elementos
-    if (this.isGameOn === true && this.protection === false && this.breakNivel === false) {
+    if (
+      this.isGameOn === true &&
+      this.protection === false &&
+      this.breakNivel === false
+    ) {
       this.jetPack.gravityJet(2.5);
-    } else if (this.isGameOn === false && this.protection === false && this.breakNivel === false) {
+    } else if (
+      this.isGameOn === false &&
+      this.protection === false &&
+      this.breakNivel === false
+    ) {
       this.jetPack.gravityJet(5.5);
     } else if (this.protection === true && this.breakNivel === false) {
       this.jetPack.gravityJet(1.7);
     }
 
     this.checkColition();
-    this.gazolinaColition();
-    this.CheckCounter();
-    this.coinsColition();
-    this.colitionBotom();
-    this.diamantColition();
-    this.bubbleCollition();
+
+    if (this.breakNivel === false) {
+      this.coinsColition();
+      this.gazolinaColition();
+      this.CheckCounter();
+      this.colitionBotom();
+      this.diamantColition();
+      this.bubbleCollition();
+    }
 
     //sound methode
     this.bipSound();
@@ -320,13 +370,14 @@ class Game {
       eachBubble.moveBubble();
     });
 
+
+
     this.pointApparence();
     this.diamantApparence();
     this.gazolinaApparence();
     this.misileApparecenLeft();
     this.misileApparecenRight();
     this.bubbleApparence();
-    
 
     // 3. dibujado de los elementos
     this.drawBg();
@@ -381,8 +432,26 @@ class Game {
       eachdiamant.drawDiamant();
     });
 
-    this.explosion.drawExplosion(this.positionExplosionArr[1], this.positionExplosionArr[0])
+    this.explosion.drawExplosion(
+      this.positionExplosionArr[1],
+      this.positionExplosionArr[0]
+    );
 
+
+    if( this.twoPointBoolean=== false){
+      this.twoPoint.drawTwoPoint(
+        this.twoPointPositionARR[0],
+        this.twoPointPositionARR[1]
+      );
+    }
+    
+    if( this.twentyPointBoolean=== false){
+      this.twentyPoint.drawTwentyPoint(
+        this.twentyPointPositionARR[0],
+        this.twentyPointPositionARR[1]
+      );
+    }
+    
 
 
     if (this.isGameOn === true && this.protection === false) {

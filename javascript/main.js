@@ -14,6 +14,7 @@ const soundSCoin = document.querySelector("#coin-sound");
 const soundBubble = document.querySelector("#bubble-sound");
 const soundgazolina = document.querySelector("#gazolina-sound");
 const nivelNextDOM = document.querySelector("#nivel2");
+const blackScreenDOM = document.querySelector(".blackScreen")
 
 const startGame = () => {
   startScreenDOM.style.display = "none";
@@ -35,8 +36,10 @@ startBtnDOM.addEventListener("click", startGame);
 nivelNextDOM.addEventListener("click", () => {
   game.breakNivel = false;
   game.count = 10;
-  nivelNextDOM.style.display = "none"
+  nivelNextDOM.style.display = "none";
+  blackScreenDOM.style.display = "none"
 });
+
 
 startBtnDOM.addEventListener("click", () => {
   sound.play();
@@ -47,12 +50,14 @@ restartBtn.addEventListener("click", () => {
   sound.play();
 });
 
+
+
 window.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
+  if (event.code === "Space" && game.breakNivel === false) {
     game.jetPack.jumpJet();
-  } else if (event.code === "ArrowRight") {
+  } else if (event.code === "ArrowRight" && game.breakNivel === false) {
     game.jetPack.movejetRight();
-  } else if (event.code === "ArrowLeft") {
+  } else if (event.code === "ArrowLeft" && game.breakNivel === false) {
     game.jetPack.movejetLeft();
   }
 });
