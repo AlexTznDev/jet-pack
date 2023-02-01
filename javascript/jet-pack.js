@@ -9,11 +9,11 @@ class JetPack {
     this.moveSpeed = 25;
 
     this.img = new Image();
-    this.img.src = "../Images/jet-pack-play-again.png";
+    this.img.src = "./Images/jet-pack-play-again.png";
     this.imgDied = new Image();
-    this.imgDied.src = "../Images/jet-pack-died.png";
+    this.imgDied.src = "./Images/jet-pack-died.png";
     this.imgBublle =new Image()
-    this.imgBublle.src = "../Images/jet-pack-bubble.png"
+    this.imgBublle.src = "./Images/jet-pack-bubble.png"
   }
 
   drawJet = () => {

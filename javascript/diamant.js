@@ -5,7 +5,7 @@ class Diamant {
       this.h = 50;
       this.w = 50;
       this.img = new Image();
-      this.img.src = "../Images/diamant.png";
+      this.img.src = "./Images/diamant.png";
 
     }
   

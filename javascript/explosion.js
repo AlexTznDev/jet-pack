@@ -6,13 +6,13 @@ class Explosion {
 
     if (arg === 0) {
      this.img = new Image();
-     this.img.src = "../Images/explosion.png";
+     this.img.src = "./Images/explosion.png";
     } else if (arg === 1) {
       this.img = new Image();
-      this.img.src = "../Images/explosion/img2.png";
+      this.img.src = "./Images/explosion/img2.png";
     } else if (arg === 2) {
       this.img = new Image();
-      this.img.src = "../Images/explosion/img3.png";
+      this.img.src = "./Images/explosion/img3.png";
     }
   }
 

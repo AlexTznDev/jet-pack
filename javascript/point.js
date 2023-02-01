@@ -8,7 +8,7 @@ class Points {
     //   this.jumpspeed = 60;
     //   this.moveSpeed = 25; 
       this.img = new Image();
-      this.img.src = "../Images/coins.png";
+      this.img.src = "./Images/coins.png";
 
     }
   

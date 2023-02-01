@@ -9,4 +9,5 @@ To Do List:
 
 
 -Bug restart game detecte colission
+-Bug apres passage nivel 2 le compteur block a 10
 

@@ -57,3 +57,18 @@ h1{
     
 }
 
+#nivel2{
+    
+    position: absolute;
+    top: 43%;
+    left: 47%;
+    background-color: rgb(254, 254, 254);
+    width: 10rem;
+    height: 10rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+}

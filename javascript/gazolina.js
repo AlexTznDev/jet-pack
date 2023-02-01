@@ -9,7 +9,7 @@ class Gazolina {
     //   this.moveSpeed = 25;
   
       this.img = new Image();
-      this.img.src = "../Images/gazolina.png";
+      this.img.src = "./Images/gazolina.png";
     }
 
     drawGazolina =()=>{

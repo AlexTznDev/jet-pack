@@ -3,7 +3,7 @@ class Game {
 
   constructor() {
     this.bg = new Image();
-    this.bg.src = "../Images/bg.png";
+    this.bg.src = "./Images/bg.png";
     this.jetPack = new JetPack();
     this.jauge = new Jauge();
     this.counterCoins = new CounterCoins();
@@ -24,7 +24,8 @@ class Game {
     this.explosion = new Explosion(0)
     this.positionExplosionArr = []
     this.nivel = 1;
-    
+    this.breakNivel = false
+
    
     
   }
@@ -37,7 +38,7 @@ class Game {
   };
 
   CheckCounter = () => {
-    if (this.frame % 120 === 0 && this.protection === false) {
+    if (this.frame % 120 === 0 && this.protection === false && this.breakNivel === false) {
       this.count--;
     }
     if (this.count === 0) {
@@ -49,6 +50,7 @@ class Game {
   checkColition = () => {
     this.missileArr.forEach((eachMisile) => {
       if (
+        this.breakNivel === false &&
         this.isGameOn &&
         this.protection === false &&
         eachMisile.x < this.jetPack.x + this.jetPack.w &&
@@ -72,6 +74,7 @@ class Game {
     });
     this.missileArrLeft.forEach((eachMisile) => {
       if (
+        this.breakNivel === false &&
         this.isGameOn &&
         this.protection === false &&
         eachMisile.x < this.jetPack.x + this.jetPack.w &&
@@ -107,7 +110,7 @@ class Game {
   };
 
   pointApparence = () => {
-    if (this.pointArr.length === 0 || this.frame % 180 === 0) {
+    if (this.pointArr.length === 0 || this.frame % 180 === 0 && this.breakNivel === false) {
       let randomPosX = Math.random() * canvas.width - 100;
       if (randomPosX < 50) {
         randomPosX = 50;
@@ -118,17 +121,17 @@ class Game {
   };
 
   bipSound = () => {
-    if (this.count === 3) {
+    if (this.count === 3 && this.breakNivel === false && this.protection === false) {
       soundBip.play();
-    } else if (this.count === 2) {
+    } else if (this.count === 2 && this.breakNivel === false && this.protection === false) {
       soundBip.play();
-    } else if (this.count === 1) {
+    } else if (this.count === 1 && this.breakNivel === false && this.protection === false) {
       soundBip.play();
     }
   };
 
   diamantApparence = () => {
-    if (this.frame % 600 === 0) {
+    if (this.frame % 600 === 0 && this.breakNivel === false) {
       let randomPosX = Math.random() * canvas.width - 100;
       if (randomPosX < 50) {
         randomPosX = 50;
@@ -140,11 +143,11 @@ class Game {
 
   misileApparecenRight = () => {
 
-    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1) {
+    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1 && this.breakNivel === false) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, canvas.width + 200, true);
       this.missileArr.push(missileRight);
-    } else if(this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2){
+    } else if(this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2 && this.breakNivel === false){
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, canvas.width + 200, true);
       this.missileArr.push(missileRight);
@@ -155,11 +158,11 @@ class Game {
 
   misileApparecenLeft = () => {
 
-    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1) {
+    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1 && this.breakNivel === false) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, -200, false);
       this.missileArrLeft.push(missileRight);
-    } else if (this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2) {
+    } else if (this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2 && this.breakNivel === false) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, -200, false);
        this.missileArrLeft.push(missileRight);
@@ -168,7 +171,7 @@ class Game {
   };
 
   gazolinaApparence = () => {
-    if (this.gazolinaArr.length === 0 || this.frame % 400 === 0) {
+    if (this.gazolinaArr.length === 0 || this.frame % 400 === 0 && this.breakNivel === false) {
       let randomPosXgaz = Math.random() * canvas.width;
       this.gazolina = new Gazolina(randomPosXgaz);
       this.gazolinaArr.push(this.gazolina);
@@ -202,10 +205,13 @@ class Game {
         this.pointArr.splice(eachCoin.target, 1);
         this.countCoins += 2;
         soundSCoin.play();
-        console.log(this.nivel)
 
-        if(this.countCoins > 40){
-          this.nivel = 2
+        console.log(this.breakNivel)
+
+        if(this.countCoins > 50 && this.nivel === 1){
+          this.nivel = 2;
+          this.breakNivel = true;
+          nivelNextDOM.style.display = "flex"
         }
 
       }
@@ -223,9 +229,12 @@ class Game {
         this.diamantArr.splice(eachDiamant.target, 1);
         this.countCoins += 20;   
         soundSCoin.play();
+        console.log(this.breakNivel)
 
-        if(this.countCoins > 40){
-          this.nivel = 2
+        if(this.countCoins > 50 && this.nivel === 1){
+          this.nivel = 2;
+          this.breakNivel = true;
+          nivelNextDOM.style.display = "flex"
         }
 
       }
@@ -235,7 +244,7 @@ class Game {
   };
 
   bubbleApparence = () => {
-    if (this.frame % 800 === 0) {
+    if (this.frame % 800 === 0 && this.breakNivel === false) {
       let randomPosXBuble = Math.random() * canvas.width;
       this.bubble = new Bubble(randomPosXBuble);
       this.bubbleArr.push(this.bubble);
@@ -261,17 +270,19 @@ class Game {
     });
   };
 
+
+
   gameLoop = () => {
     this.frame++;
     // 1.limpiar el canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // 2. movimientos y acciones de todos los elementos
-    if (this.isGameOn === true && this.protection === false) {
+    if (this.isGameOn === true && this.protection === false && this.breakNivel === false) {
       this.jetPack.gravityJet(2.5);
-    } else if (this.isGameOn === false && this.protection === false) {
+    } else if (this.isGameOn === false && this.protection === false && this.breakNivel === false) {
       this.jetPack.gravityJet(5.5);
-    } else if (this.protection === true) {
+    } else if (this.protection === true && this.breakNivel === false) {
       this.jetPack.gravityJet(1.7);
     }
 

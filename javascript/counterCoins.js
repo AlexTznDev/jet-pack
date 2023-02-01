@@ -6,7 +6,7 @@ class CounterCoins {
       this.w = 200;
   
       this.img = new Image();
-      this.img.src = "../Images/coinsCount.png";
+      this.img.src = "./Images/coinsCount.png";
 
     }
   

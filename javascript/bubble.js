@@ -9,7 +9,7 @@ class Bubble {
 
   
       this.img = new Image();
-      this.img.src = "../Images/bubble.png";
+      this.img.src = "./Images/bubble.png";
 
     }
   

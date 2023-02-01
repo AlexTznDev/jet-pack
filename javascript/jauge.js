@@ -7,37 +7,37 @@ class Jauge {
  
   
       this.img = new Image();
-      this.img.src = "../Images/jauge/jauge-1.png";
+      this.img.src = "./Images/jauge/jauge-1.png";
 
       this.img2 = new Image();
-      this.img2.src = "../Images/jauge/jauge-2.png"
+      this.img2.src = "./Images/jauge/jauge-2.png"
 
       this.img3 = new Image();
-      this.img3.src = "../Images/jauge/jauge-3.png";
+      this.img3.src = "./Images/jauge/jauge-3.png";
 
       this.img4 = new Image();
-      this.img4.src = "../Images/jauge/jauge-4.png"
+      this.img4.src = "./Images/jauge/jauge-4.png"
 
       this.img5 = new Image();
-      this.img5.src = "../Images/jauge/jauge-'.png";
+      this.img5.src = "./Images/jauge/jauge-'.png";
 
       this.img6 = new Image();
-      this.img6.src = "../Images/jauge/jauge-5.png"
+      this.img6.src = "./Images/jauge/jauge-5.png"
 
       this.img7 = new Image();
-      this.img7.src = "../Images/jauge/jauge-6.png";
+      this.img7.src = "./Images/jauge/jauge-6.png";
 
       this.img8 = new Image();
-      this.img8.src = "../Images/jauge/jauge-7.png"
+      this.img8.src = "./Images/jauge/jauge-7.png"
 
       this.img9 = new Image();
-      this.img9.src = "../Images/jauge/jauge-8.png";
+      this.img9.src = "./Images/jauge/jauge-8.png";
 
       this.img10 = new Image();
-      this.img10.src = "../Images/jauge/jauge-9.png"
+      this.img10.src = "./Images/jauge/jauge-9.png"
 
       this.img11 = new Image();
-      this.img11.src = "../Images/jauge/jauge-10.png"
+      this.img11.src = "./Images/jauge/jauge-10.png"
     }
   
 
