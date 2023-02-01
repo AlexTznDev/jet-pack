@@ -13,7 +13,8 @@ const soundexplosion = document.querySelector("#explosion-sound");
 const soundSCoin = document.querySelector("#coin-sound");
 const soundBubble = document.querySelector("#bubble-sound");
 const soundgazolina = document.querySelector("#gazolina-sound");
-const nivelNextDOM = document.querySelector("#nivel2");
+const nivelNextDOM = document.querySelector(".containerNivel2");
+const nivelNextPopUpDOM = document.querySelector("#nivel2")
 const blackScreenDOM = document.querySelector(".blackScreen")
 
 const startGame = () => {
@@ -37,7 +38,8 @@ nivelNextDOM.addEventListener("click", () => {
   game.breakNivel = false;
   game.count = 10;
   nivelNextDOM.style.display = "none";
-  blackScreenDOM.style.display = "none"
+  blackScreenDOM.style.display = "none";
+  nivelNextPopUpDOM.style.display="none"
 });
 
 

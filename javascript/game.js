@@ -250,6 +250,7 @@ class Game {
           this.nivel = 2;
           this.breakNivel = true;
           nivelNextDOM.style.display = "flex";
+          nivelNextPopUpDOM.style.display="flex"
           blackScreenDOM.style.display = "flex";
         }
       }
@@ -279,6 +280,7 @@ class Game {
           this.nivel = 2;
           this.breakNivel = true;
           nivelNextDOM.style.display = "flex";
+          nivelNextPopUpDOM.style.display="flex"
           blackScreenDOM.style.display = "flex";
         }
       }
