@@ -23,6 +23,8 @@ class Game {
     this.bubbleArr = [];
     this.explosion = new Explosion(0)
     this.positionExplosionArr = []
+    this.nivel = 1;
+    
    
     
   }
@@ -137,19 +139,32 @@ class Game {
   };
 
   misileApparecenRight = () => {
-    if (this.missileArr.length === 0 || this.frame % 60 === 0) {
+
+    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1) {
+      let randomPosY = Math.random() * canvas.height;
+      let missileRight = new Missile(randomPosY, canvas.width + 200, true);
+      this.missileArr.push(missileRight);
+    } else if(this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2){
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, canvas.width + 200, true);
       this.missileArr.push(missileRight);
     }
+
+
   };
 
   misileApparecenLeft = () => {
-    if (this.missileArr.length === 0 || this.frame % 60 === 0) {
+
+    if (this.missileArr.length === 0 || this.frame % 300 === 0 && this.nivel === 1) {
       let randomPosY = Math.random() * canvas.height;
       let missileRight = new Missile(randomPosY, -200, false);
       this.missileArrLeft.push(missileRight);
+    } else if (this.missileArr.length === 0 || this.frame % 60 === 0 && this.nivel === 2) {
+      let randomPosY = Math.random() * canvas.height;
+      let missileRight = new Missile(randomPosY, -200, false);
+       this.missileArrLeft.push(missileRight);
     }
+
   };
 
   gazolinaApparence = () => {
@@ -187,6 +202,12 @@ class Game {
         this.pointArr.splice(eachCoin.target, 1);
         this.countCoins += 2;
         soundSCoin.play();
+        console.log(this.nivel)
+
+        if(this.countCoins > 40){
+          this.nivel = 2
+        }
+
       }
     });
   };
@@ -202,6 +223,11 @@ class Game {
         this.diamantArr.splice(eachDiamant.target, 1);
         this.countCoins += 20;   
         soundSCoin.play();
+
+        if(this.countCoins > 40){
+          this.nivel = 2
+        }
+
       }
     });
 
