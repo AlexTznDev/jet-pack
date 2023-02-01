@@ -20,7 +20,7 @@ h1{
 #restart-btn {
 
     width: 200px;
-    padding-top: 100px;
+    padding-top: 20px;
 }
 
 .img-button {
@@ -37,6 +37,16 @@ h1{
     align-items: center;
     margin: 50px;
 
+}
+
+.instructionContainer{
+    padding-top: 40px;
+width: 30%;
+
+}
+
+#instructionImg{ 
+width: 100%;
 }
 
 #my-canvas {
