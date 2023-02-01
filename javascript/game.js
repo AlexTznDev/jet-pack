@@ -8,12 +8,14 @@ class Game {
     this.jauge = new Jauge();
     this.counterCoins = new CounterCoins();
     this.frame = 1; // quantité de frame passé dans le jeux
+
     this.isGameon = true;
+    this.isGameOn = true;
+
     this.missileArr = [];
     this.missileArrLeft = [];
     this.gazolinaArr = [];
     this.count = 10;
-    this.isGameOn = true;
     this.missileSeparation = 300;
     this.diamantArr = [];
     this.pointArr = [];
@@ -42,8 +44,10 @@ class Game {
       this.count--;
     }
     if (this.count === 0) {
-      this.gameOver();
+      this.isGameOn = false;
       soundLoose.play();
+      this.jetPack.missileTouch();
+      
     }
   };
 
@@ -67,9 +71,7 @@ class Game {
         this.isGameOn = false;
         soundexplosion.play();
         soundLoose.play();
-        setTimeout(() => {
-          this.gameOver();
-        }, 2300);
+
       }
     });
     this.missileArrLeft.forEach((eachMisile) => {
@@ -91,9 +93,7 @@ class Game {
         this.isGameOn = false;
         soundexplosion.play();
         soundLoose.play();
-        setTimeout(() => {
-          this.gameOver();
-        }, 2300);
+
       }
     });
   };

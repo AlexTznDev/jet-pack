@@ -20,6 +20,8 @@ const startGame = () => {
   gameOverScrreenDOM.style.display = "none";
   canvas.style.display = "block";
   bodyDOM.style.backgroundColor = "#0b0f2c";
+ 
+
 
   // 2. crear un objeto de la clase Game
   game = new Game();
@@ -57,7 +59,7 @@ window.addEventListener("keydown", (event) => {
 
 sound.volume = 0.06
 soundBip.volume = 0.02
-soundLoose.volume = 0.02
+soundLoose.volume = 0.06
 soundexplosion.volume = 0.02
 soundSCoin.volume = 0.02
 soundBubble.volume = 0.02
