@@ -14,19 +14,19 @@ class JetPack {
     this.imgDied.src = "./Images/jet-pack-died.png";
 
     this.imgBublle5 = new Image();
-    this.imgBublle5.src = "../Images/bubbles/jet-pack-bubble-5.png";
+    this.imgBublle5.src = "./Images/bubbles/jet-pack-bubble-5.png";
 
     this.imgBublle4 = new Image();
-    this.imgBublle4.src = "../Images/bubbles/jet-pack-bubble-4.png";
+    this.imgBublle4.src = "./Images/bubbles/jet-pack-bubble-4.png";
 
     this.imgBublle3 = new Image();
-    this.imgBublle3.src = "../Images/bubbles/jet-pack-bubble-3.png";
+    this.imgBublle3.src = "./Images/bubbles/jet-pack-bubble-3.png";
 
     this.imgBublle2 = new Image();
-    this.imgBublle2.src = "../Images/bubbles/jet-pack-bubble-2.png";
+    this.imgBublle2.src = "./Images/bubbles/jet-pack-bubble-2.png";
 
     this.imgBublle1 = new Image();
-    this.imgBublle1.src = "../Images/bubbles/jet-pack-bubble-1.png";
+    this.imgBublle1.src = "./Images/bubbles/jet-pack-bubble-1.png";
   }
 
   drawJet = () => {

@@ -240,7 +240,7 @@ class Game {
         this.countCoins += 2;
         soundSCoin.play();
 
-        if (this.countCoins >= 10 && this.nivel === 1) {
+        if (this.countCoins >= 20 && this.nivel === 1) {
           this.nivel = 2;
           this.breakNivel = true;
           nivelNextDOM.style.display = "flex";
@@ -269,7 +269,7 @@ class Game {
         this.countCoins += 20;
         soundSCoin.play();
 
-        if (this.countCoins >= 10 && this.nivel === 1) {
+        if (this.countCoins >= 20 && this.nivel === 1) {
           this.nivel = 2;
           this.breakNivel = true;
           nivelNextDOM.style.display = "flex";
@@ -281,7 +281,7 @@ class Game {
   };
 
   bubbleApparence = () => {
-    if (this.frame % 300 === 0 && this.breakNivel === false) {
+    if (this.frame % 400 === 0 && this.breakNivel === false) {
       let randomPosXBuble = Math.random() * canvas.width;
       this.bubble = new Bubble(randomPosXBuble);
       this.bubbleArr.push(this.bubble);
@@ -309,9 +309,7 @@ class Game {
       this.countBubble > 0
     ) {
       this.countBubble--;
-    }
-
-    if (this.countBubble === 0) {
+    }else if (this.countBubble === 0) {
       this.protection = false;
     }
 
