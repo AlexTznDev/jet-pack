@@ -16,15 +16,12 @@ const soundgazolina = document.querySelector("#gazolina-sound");
 const nivelNextDOM = document.querySelector(".containerNivel2");
 const nivelNextPopUpDOM = document.querySelector("#nivel2")
 const blackScreenDOM = document.querySelector(".blackScreen")
-
 const startGame = () => {
   startScreenDOM.style.display = "none";
   gameOverScrreenDOM.style.display = "none";
   canvas.style.display = "block";
   bodyDOM.style.backgroundColor = "#0b0f2c";
  
-
-
   // 2. crear un objeto de la clase Game
   game = new Game();
 

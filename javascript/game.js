@@ -8,10 +8,8 @@ class Game {
     this.jauge = new Jauge();
     this.counterCoins = new CounterCoins();
     this.frame = 1; // quantité de frame passé dans le jeux
-
     this.isGameon = true;
     this.isGameOn = true;
-
     this.missileArr = [];
     this.missileArrLeft = [];
     this.gazolinaArr = [];
@@ -33,11 +31,7 @@ class Game {
     this.twentyPoint = new More20();
     this.twentyPointPositionARR = [];
     this.twentyPointBoolean = false;
-
-
-
-
-
+    this.countBubble = 0;
   }
 
   gameOver = () => {
@@ -238,9 +232,9 @@ class Game {
       ) {
         this.twoPointPositionARR = [eachCoin.x, eachCoin.y];
         this.twoPointBoolean = false;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.twoPointBoolean = true;
-        }, 500)
+        }, 500);
 
         this.pointArr.splice(eachCoin.target, 1);
         this.countCoins += 2;
@@ -250,7 +244,7 @@ class Game {
           this.nivel = 2;
           this.breakNivel = true;
           nivelNextDOM.style.display = "flex";
-          nivelNextPopUpDOM.style.display="flex"
+          nivelNextPopUpDOM.style.display = "flex";
           blackScreenDOM.style.display = "flex";
         }
       }
@@ -265,12 +259,11 @@ class Game {
         eachDiamant.y < this.jetPack.y + this.jetPack.h &&
         eachDiamant.h + eachDiamant.y > this.jetPack.y
       ) {
-
         this.twentyPointPositionARR = [eachDiamant.x, eachDiamant.y];
         this.twentyPointBoolean = false;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.twentyPointBoolean = true;
-        }, 1000)
+        }, 1000);
 
         this.diamantArr.splice(eachDiamant.target, 1);
         this.countCoins += 20;
@@ -280,7 +273,7 @@ class Game {
           this.nivel = 2;
           this.breakNivel = true;
           nivelNextDOM.style.display = "flex";
-          nivelNextPopUpDOM.style.display="flex"
+          nivelNextPopUpDOM.style.display = "flex";
           blackScreenDOM.style.display = "flex";
         }
       }
@@ -288,7 +281,7 @@ class Game {
   };
 
   bubbleApparence = () => {
-    if (this.frame % 800 === 0 && this.breakNivel === false) {
+    if (this.frame % 300 === 0 && this.breakNivel === false) {
       let randomPosXBuble = Math.random() * canvas.width;
       this.bubble = new Bubble(randomPosXBuble);
       this.bubbleArr.push(this.bubble);
@@ -306,11 +299,24 @@ class Game {
         this.bubbleArr.splice(eachBubble.target, 1);
         this.protection = true;
         soundBubble.play();
-        setTimeout(() => {
-          this.protection = false;
-        }, 6000);
+        this.countBubble = 5;
       }
     });
+
+    if (
+      this.frame % 60 === 0 &&
+      this.protection === true &&
+      this.countBubble > 0
+    ) {
+      this.countBubble--;
+    }
+
+    if (this.countBubble === 0) {
+      this.protection = false;
+    }
+
+
+
   };
 
   gameLoop = () => {
@@ -371,8 +377,6 @@ class Game {
     this.bubbleArr.forEach((eachBubble) => {
       eachBubble.moveBubble();
     });
-
-
 
     this.pointApparence();
     this.diamantApparence();
@@ -439,29 +443,34 @@ class Game {
       this.positionExplosionArr[0]
     );
 
-
-    if( this.twoPointBoolean=== false){
+    if (this.twoPointBoolean === false) {
       this.twoPoint.drawTwoPoint(
         this.twoPointPositionARR[0],
         this.twoPointPositionARR[1]
       );
     }
-    
-    if( this.twentyPointBoolean=== false){
+
+    if (this.twentyPointBoolean === false) {
       this.twentyPoint.drawTwentyPoint(
         this.twentyPointPositionARR[0],
         this.twentyPointPositionARR[1]
       );
     }
-    
-
 
     if (this.isGameOn === true && this.protection === false) {
       this.jetPack.drawJet();
     } else if (this.isGameOn === false && this.protection === false) {
       this.jetPack.drawDiedJet();
-    } else if (this.protection === true) {
-      this.jetPack.drawBubbleJet();
+    } else if (this.countBubble === 5 && this.protection === true) {
+      this.jetPack.drawBubbleJet5();
+    } else if (this.countBubble === 4 && this.protection === true) {
+      this.jetPack.drawBubbleJet4();
+    } else if (this.countBubble === 3 && this.protection === true) {
+      this.jetPack.drawBubbleJet3();
+    } else if (this.countBubble === 2 && this.protection === true) {
+      this.jetPack.drawBubbleJet2();
+    } else if (this.countBubble === 1 && this.protection === true) {
+      this.jetPack.drawBubbleJet1();
     }
 
     if (this.isGameon === true) {

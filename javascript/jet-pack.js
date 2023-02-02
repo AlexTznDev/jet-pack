@@ -12,8 +12,21 @@ class JetPack {
     this.img.src = "./Images/jet-pack-play-again.png";
     this.imgDied = new Image();
     this.imgDied.src = "./Images/jet-pack-died.png";
-    this.imgBublle = new Image();
-    this.imgBublle.src = "./Images/jet-pack-bubble.png";
+
+    this.imgBublle5 = new Image();
+    this.imgBublle5.src = "../Images/bubbles/jet-pack-bubble-5.png";
+
+    this.imgBublle4 = new Image();
+    this.imgBublle4.src = "../Images/bubbles/jet-pack-bubble-4.png";
+
+    this.imgBublle3 = new Image();
+    this.imgBublle3.src = "../Images/bubbles/jet-pack-bubble-3.png";
+
+    this.imgBublle2 = new Image();
+    this.imgBublle2.src = "../Images/bubbles/jet-pack-bubble-2.png";
+
+    this.imgBublle1 = new Image();
+    this.imgBublle1.src = "../Images/bubbles/jet-pack-bubble-1.png";
   }
 
   drawJet = () => {
@@ -22,9 +35,25 @@ class JetPack {
   drawDiedJet = () => {
     ctx.drawImage(this.imgDied, this.x, this.y, this.w, this.h);
   };
-  drawBubbleJet = () => {
-    ctx.drawImage(this.imgBublle, this.x, this.y, 70, this.h);
+
+  //all bublles draw
+
+  drawBubbleJet1 = () => {
+    ctx.drawImage(this.imgBublle1, this.x, this.y, 60, 60);
   };
+  drawBubbleJet2 = () => {
+    ctx.drawImage(this.imgBublle2, this.x, this.y, 60, 60);
+  };
+  drawBubbleJet3 = () => {
+    ctx.drawImage(this.imgBublle3, this.x, this.y, 60, 60);
+  };
+  drawBubbleJet4 = () => {
+    ctx.drawImage(this.imgBublle4, this.x, this.y, 60, 60);
+  };
+  drawBubbleJet5 = () => {
+    ctx.drawImage(this.imgBublle5, this.x, this.y, 60, 60);
+  };
+  //all bublles draw fin
 
   gravityJet = (arg) => {
     this.y += arg;
@@ -36,9 +65,6 @@ class JetPack {
   movejetLeft = () => {
     this.x -= this.moveSpeed;
   };
-  // moveJetDown =()=>{
-  //   this.y += this.moveSpeed;
-  // }
 
   jumpJet = () => {
     if (this.y > 0) {

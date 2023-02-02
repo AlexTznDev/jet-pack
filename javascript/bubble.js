@@ -6,8 +6,8 @@ class Bubble {
       this.h = 40;
       this.w = 40;
       this.speed = 2.5;
-
   
+
       this.img = new Image();
       this.img.src = "./Images/bubble.png";
 
