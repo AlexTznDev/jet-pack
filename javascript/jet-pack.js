@@ -66,6 +66,7 @@ class JetPack {
     this.x -= this.moveSpeed;
   };
 
+  
   jumpJet = () => {
     if (this.y > 0) {
       this.y -= this.jumpspeed;
