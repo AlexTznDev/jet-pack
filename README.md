@@ -84,3 +84,4 @@ Link url "https://alextzndev.github.io/jet-pack/"
 
 Slides
 URls for the project presentation (slides) Link Slides.com
+"https://drive.google.com/drive/folders/1eoJRwZzfnksqGLbPlIWQKuxC7T5oGdSu"
